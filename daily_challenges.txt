@@ -1,0 +1,70 @@
+My Solutions to the daily LeetCode challenges
+
+Author: JD Linares
+Created: 28 Dec 2021
+Updated: Regularly
+
+
+
+
+
+###
+28 Dec 2021
+
+Given the head of a singly linked list, return the middle node of the linked list.
+
+If there are two middle nodes, return the second middle node.
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
+#        print(head)
+        result = head
+        counter = 1
+        current_node = head
+        # Iterate once to count the nodes
+        while current_node.next != None:
+            counter+=1
+            current_node = current_node.next
+        if counter==1:
+            return result
+        if counter % 2 == 0:
+            for i in range(0,counter//2):
+                result = result.next
+            return result
+        else:
+            for i in range(0,counter//2):
+                result = result.next
+            return result
+
+
+
+
+
+###
+27 Dec 2021
+
+The complement of an integer is the integer you get when you flip all the 0's to 1's and all the 1's to 0's in its binary representation.
+
+For example, The integer 5 is "101" in binary and its complement is "010" which is the integer 2.
+Given an integer num, return its complement.
+
+
+class Solution:
+    def findComplement(self, num: int) -> int:
+        int_2 = format(num,'b')
+        output_value = ''
+        for char_val in int_2:
+            if char_val == '0':
+                output_value += '1'
+            else:
+                output_value += '0'
+        return int(output_value,2)
+
+
+
