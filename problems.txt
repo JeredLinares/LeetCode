@@ -1,0 +1,54 @@
+JD Linares' Solutions to LeetCode problems
+
+
+
+###
+Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+You can return the answer in any order.
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        nums_sorted = sorted(nums)
+
+        index_end = len(nums_sorted)
+        runner = True
+
+        while runner:
+            index_end-=1
+            if nums_sorted[index_end] + nums_sorted[0] <= target:
+                runner = False
+        for i in range(index_end,0,-1):
+            for j in range(0,i):
+                if nums_sorted[i]+nums_sorted[j]==target:
+                    for i2 in range(0,len(nums)):
+                        if nums[i2]==nums_sorted[i]:
+                            for j2 in range(0,len(nums)):
+                                if j2!=i2 and nums[j2]==nums_sorted[j]:
+                                    return [i2,j2]
+
+        return [0,0,0]
+
+RESULT:
+Runtime: 271 ms, faster than 40.09% of Python3 online submissions for Two Sum.
+Memory Usage: 14.9 MB, less than 64.26% of Python3 online submissions for Two Sum.
+
+
+
+LEARNED:
+	sorted() returns a new list
+	sort() will sort a list in place
+	Solution in linear time
+		Using a hashmap
+		Build the hash map, while building check if the complement to the current value and target exisits
+			If it doesn't exist in the hashmap, continue
+			When it does exist...
+				Solutions is current value and the complement in the hashmap
+
+NOTES:
+	I was trying to beat the O(n^2) by sorting first
+		This made getting original indexes harder
+
+
